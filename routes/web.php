@@ -16,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/', fn() => view('index'))->name('index');
+Route::get('livechat',  'LiveChat@index')->name('livechat');
+
+// App
+Route::get('app', 'App@index')->name('app');
+Route::get('signout', 'App@signout')->name('signout');
+Route::get('reissue', 'App@reissueUserkey')->name('reissue');
+
+// Auth
+Route::get('auth/redirect', [OAuth::class, 'redirect'])->name('auth');
+Route::get('auth/callback', [OAuth::class, 'callback']); // @ YOUTUBE: callback
