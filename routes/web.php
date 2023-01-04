@@ -13,13 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn() => view('index'))->name('index');
-Route::get('livechat',  'LiveChat@index')->name('livechat');
+// Common
+Route::view('/', 'index')->name('index');
+Route::get('livechat', [LiveChat::class ,'index'])->name('livechat');
 
 // App
-Route::get('app', 'App@index')->name('app');
-Route::get('signout', 'App@signout')->name('signout');
-Route::get('reissue', 'App@reissueUserkey')->name('reissue');
+Route::get('app',     [App::class, 'app'])->name('app');
+Route::get('signout', [App::class, 'signout'])->name('signout');
+Route::get('reissue', [App::class, 'reissueUserkey'])->name('reissue');
 
 // Auth
 Route::get('auth/redirect', [OAuth::class, 'redirect'])->name('auth');
