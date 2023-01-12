@@ -18,9 +18,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'roca-id',
+        'updated-at',
+
+        'youtube-id',
+        'youtube-nickname',
+        'youtube-name',
+        'youtube-email',
+        'youtube-avatar',
+
+        'youtube-refresh-token',
+        'youtube-access-token',
     ];
 
     /**
@@ -29,7 +37,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
         'remember_token',
     ];
 
@@ -39,6 +46,5 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 }

@@ -20,8 +20,8 @@ class OAuth extends Controller
         ];
 
         $parameters = [
-            'access_type' => 'offline', // refresh_tokenを取得するためのパラメタ
-            "prompt" => "consent select_account" // アカウントを選択するプロンプトを表示するためのパラメタ
+            'access_type' => 'offline', // -> refresh_tokenを取得するためのパラメタ
+            "prompt" => "consent select_account" // -> アカウントを選択するプロンプトを表示するためのパラメタ
         ];
 
         // -> 認証開始
@@ -39,21 +39,19 @@ class OAuth extends Controller
             stateless()->
             user();
 
-        \Log::debug($channel);// loggggggggggggggggggggggggggggggggggg
-
         // -> 新規認証時にDBに登録
-        $user = User::firstOrCreate(['userid' => $channel->id], [
+        $user = User::firstOrCreate(['youtube-id' => $channel->id], [
+            'roca-id'    => Identifier::generateToken('roca-app-dynamodb-users', 'roca-id'),
+            'updated-at' => new \DateTime(),
 
-            // rocaのアカウント情報
-            'refreshed_at' => new \DateTime(),
-            'userkey' => Identifier::generateToken('users', 'userkey'),
+            'youtube-id'       => $channel->id,
+            'youtube-nickname' => $channel->nickname,
+            'youtube-name'     => $channel->name,
+            'youtube-email'    => $channel->email,
+            'youtube-avatar'   => $channel->avatar,
 
-            // youtubeのアカウント情報
-            'refresh_token' => $channel->refreshToken,
-            'access_token' => $channel->token,
-            'userid' => $channel->id,
-            'nickname' => $channel->nickname,
-            'avatar' => $channel->avatar
+            'youtube-refresh-token' => $channel->refreshToken,
+            'youtube-access-token'  => $channel->token
         ]);
         Auth::login($user, true);
 
