@@ -195,11 +195,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        /*
-         * External Service Providers...
-         */
-        BaoPham\DynamoDb\DynamoDbServiceProvider::class,
-
     ],
 
     /*
