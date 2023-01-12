@@ -41,7 +41,7 @@ class OAuth extends Controller
 
         // -> 新規認証時にDBに登録
         $user = User::firstOrCreate(['youtube_id' => $channel->id], [
-            'roca_id'    => Identifier::generateToken('users', 'roca_id'),
+            'user_key'    => Identifier::generateToken('users', 'user_key'),
             'updated_at' => new \DateTime(),
 
             'youtube_id'       => $channel->id,
