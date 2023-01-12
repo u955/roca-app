@@ -41,7 +41,7 @@ class OAuth extends Controller
 
         // -> 新規認証時にDBに登録
         $user = User::firstOrCreate(['youtube-id' => $channel->id], [
-            'roca-id'    => Identifier::generateToken('roca-app-dynamodb-users', 'roca-id'),
+            'roca-id'    => Identifier::generateToken('users', 'roca-id'),
             'updated-at' => new \DateTime(),
 
             'youtube-id'       => $channel->id,
