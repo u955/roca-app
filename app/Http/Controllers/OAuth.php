@@ -40,18 +40,18 @@ class OAuth extends Controller
             user();
 
         // -> 新規認証時にDBに登録
-        $user = User::firstOrCreate(['youtube-id' => $channel->id], [
-            'roca-id'    => Identifier::generateToken('users', 'roca-id'),
-            'updated-at' => new \DateTime(),
+        $user = User::firstOrCreate(['youtube_id' => $channel->id], [
+            'roca_id'    => Identifier::generateToken('users', 'roca_id'),
+            'updated_at' => new \DateTime(),
 
-            'youtube-id'       => $channel->id,
-            'youtube-nickname' => $channel->nickname,
-            'youtube-name'     => $channel->name,
-            'youtube-email'    => $channel->email,
-            'youtube-avatar'   => $channel->avatar,
+            'youtube_id'       => $channel->id,
+            'youtube_nickname' => $channel->nickname,
+            'youtube_name'     => $channel->name,
+            'youtube_email'    => $channel->email,
+            'youtube_avatar'   => $channel->avatar,
 
-            'youtube-refresh-token' => $channel->refreshToken,
-            'youtube-access-token'  => $channel->token
+            'youtube_refresh_token' => $channel->refreshToken,
+            'youtube_access_token'  => $channel->token
         ]);
         Auth::login($user, true);
 

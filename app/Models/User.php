@@ -18,17 +18,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'roca-id',
-        'updated-at',
+        'roca_id',
+        'updated_at',
 
-        'youtube-id',
-        'youtube-nickname',
-        'youtube-name',
-        'youtube-email',
-        'youtube-avatar',
+        'youtube_id',
+        'youtube_nickname',
+        'youtube_name',
+        'youtube_email',
+        'youtube_avatar',
 
-        'youtube-refresh-token',
-        'youtube-access-token',
+        'youtube_refresh_token',
+        'youtube_access_token',
     ];
 
     /**
