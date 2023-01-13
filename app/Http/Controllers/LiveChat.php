@@ -30,7 +30,7 @@ class LiveChat extends Controller
     // livechatidを返すAPI
     public function getLiveChatID(Request $request)
     {
-        $access_token = AccessToken::get($request->user_key); // -> user_keyからaccess_tokenを取得
+        $access_token = AccessToken::get($request->userkey); // -> user_keyからaccess_tokenを取得
         $url = "https://youtube.googleapis.com/youtube/v3/liveBroadcasts?part=snippet&broadcastStatus=active&maxResults=1&access_token={$access_token}&key={$this->key}";
 
         // -> API呼び出し
@@ -44,7 +44,7 @@ class LiveChat extends Controller
     public function streaming(Request $request)
     {
         // -> user_keyが一致しなければ処理しない
-        if(DB::table('users')->where('user_key', $request->user_key)->doesntExist()) return;
+        if(DB::table('users')->where('user_key', $request->userkey)->doesntExist()) return;
 
         $id = $request->livechatid; // -> URLクエリからliveChatIdを取得
         $pageToken = $request->pageToken; // -> URLクエリからpageTokenを取得
