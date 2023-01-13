@@ -20,7 +20,7 @@ Route::view('/', 'index')->name('index');
 Route::get('livechat', [LiveChat::class ,'index'])->name('livechat');
 
 // App
-Route::get('app',     [App::class, 'app'])->name('app');
+Route::get('app',     [App::class, 'index'])->name('app');
 Route::get('signout', [App::class, 'signout'])->name('signout');
 Route::get('reissue', [App::class, 'reissueUserkey'])->name('reissue');
 
