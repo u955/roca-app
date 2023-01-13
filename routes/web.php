@@ -17,7 +17,7 @@ use App\Http\Controllers\OAuth;
 */
 
 // Common
-Route::view('/', 'index')->name('index');
+Route::redirect('/', 'https://zigzag-shovel-e41.notion.site/ROCA-AI-db53de64197f440d9cc9914ab2fcb228')->name('index');
 Route::get('livechat', [LiveChat::class ,'index'])->name('livechat');
 
 // App

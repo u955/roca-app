@@ -7,7 +7,6 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/sass/livechat.scss',
-                'resources/sass/index.scss',
 
                 'resources/js/app.js',
                 'resources/js/appprocess.js',
