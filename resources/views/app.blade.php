@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
 
     @vite([
-        'resources/js/appprocess.js',
+        'resources/js/_app.js',
         'resources/sass/app.scss'
     ])
 

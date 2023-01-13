@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
 
     @vite([
-        'resources/js/livechat.js',
+        'resources/js/_livechat.js',
         'resources/sass/livechat.scss'
     ])
 
