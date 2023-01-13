@@ -15,18 +15,20 @@ class App extends Controller
         if(!Auth::check()) return redirect()->route('index'); // -> 未認証をindexへ
 
         // DB処理軽減のためcookieを利用する
-        if(!Cookie::has('userid') || !Cookie::has('userkey')) {
-            $userid  = Auth::user()->userid; // -> useridからuserkeyを取得
-            $userkey = Auth::user()->userkey;
+        if(!Cookie::has('youtube_id') || !Cookie::has('user_key')) {
+            $youtube_id  = Auth::user()->youtube_id;
+            $user_key     = Auth::user()->user_key;
 
-            Cookie::queue(Cookie::make('userkey', $userkey, 28800, null, null, null, false)); // -> cookieへ20日間保存
-            Cookie::queue(Cookie::make('userid', $userid, 28800, null, null, null, false));
+            Cookie::queue(Cookie::make('user_key', $user_key, 28800, null, null, null, false)); // -> cookieへ20日間保存
+            Cookie::queue(Cookie::make('youtube_id', $youtube_id, 28800, null, null, null, false));
         }
-        $userkey ??= Cookie::get('userkey'); // -> cookieからuserkeyを取得
-        $nickname  = Auth::user()->nickname;
-        $avatar    = Auth::user()->avatar;
+        $user_key ??= Cookie::get('user_key'); // -> cookieからuser_keyを取得
+        $nickname  = Auth::user()->youtube_nickname;
+        $name      = Auth::user()->youtube_name;
+        $email     = Auth::user()->youtube_email;
+        $avatar    = Auth::user()->youtube_avatar;
 
-        return view('app', compact('userkey', 'nickname', 'avatar')); // -> userkeyをlivechatのbladeへ渡す
+        return view('app', compact('user_key', 'nickname', 'name', 'email', 'avatar')); // -> user_keyをlivechatのbladeへ渡す
     }
 
 
@@ -34,27 +36,27 @@ class App extends Controller
     public function signout()
     {
         if(Auth::check()) {
-            Cookie::queue(Cookie::forget('userid'));
-            Cookie::queue(Cookie::forget('userkey'));
+            Cookie::queue(Cookie::forget('youtube_id'));
+            Cookie::queue(Cookie::forget('user_key'));
             Auth::logout();
         }
         return redirect()->route('index'); // -> indexへ
     }
 
 
-    // userkeyを再発行する
-    public function reissueUserkey()
+    // user_keyを再発行する
+    public function reissueUserKey()
     {
         if(!Auth::check()) return redirect()->route('index'); // -> 未認証をindexへ
 
-        $regacyUserkey = Auth::user()->userkey; // -v userkeyを生成
-        $newUserkey = Identifier::generateToken('users', 'userkey');
+        $regacy_user_key = Auth::user()->user_key; // -> user_keyを生成
+        $new_user_key = Identifier::generateToken('users', 'user_key');
 
-        DB::table('users')->where('userkey', $regacyUserkey)->update([
-            'userkey' => $newUserkey
+        DB::table('users')->where('user_key', $regacy_user_key)->update([
+            'user_key' => $new_user_key
         ]);
 
-        Cookie::queue(Cookie::forget('userkey'));
+        Cookie::queue(Cookie::forget('user_key'));
         return redirect()->route('app'); // -> appへ
     }
 }

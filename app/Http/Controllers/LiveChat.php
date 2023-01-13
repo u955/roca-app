@@ -21,16 +21,16 @@ class LiveChat extends Controller
     // ACCESS FROM URL
     public function index(Request $request)
     {
-        // -> URLクエリからuserkeyを取得
-        $userkey = $request->userkey;
-        return view('livechat' , compact('userkey'));
+        // -> URLクエリからuser_keyを取得
+        $user_key = $request->user_key;
+        return view('livechat' , compact('user_key'));
     }
 
 
     // livechatidを返すAPI
     public function getLiveChatID(Request $request)
     {
-        $access_token = AccessToken::get($request->userkey); // -> userkeyからaccess_tokenを取得
+        $access_token = AccessToken::get($request->user_key); // -> user_keyからaccess_tokenを取得
         $url = "https://youtube.googleapis.com/youtube/v3/liveBroadcasts?part=snippet&broadcastStatus=active&maxResults=1&access_token={$access_token}&key={$this->key}";
 
         // -> API呼び出し
@@ -43,8 +43,8 @@ class LiveChat extends Controller
     // liveChatを取得するAPI
     public function streaming(Request $request)
     {
-        // -> userkeyが一致しなければ処理しない
-        if(DB::table('users')->where('userkey', $request->userkey)->doesntExist()) return;
+        // -> user_keyが一致しなければ処理しない
+        if(DB::table('users')->where('user_key', $request->user_key)->doesntExist()) return;
 
         $id = $request->livechatid; // -> URLクエリからliveChatIdを取得
         $pageToken = $request->pageToken; // -> URLクエリからpageTokenを取得
@@ -62,7 +62,7 @@ class LiveChat extends Controller
     public function deleteLiveChatMessage(Request $request)
     {
         $id = $request->id; // -> livechatmessageidを取得
-        $access_token = AccessToken::get($request->userkey); // -> userkeyからaccess_tokenを取得
+        $access_token = AccessToken::get($request->user_key); // -> user_keyからaccess_tokenを取得
         $url = "https://youtube.googleapis.com/youtube/v3/liveChat/messages?id={$id}&access_token={$access_token}&key={$this->key}";
 
         // -> API呼び出し
