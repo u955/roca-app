@@ -59,7 +59,7 @@ class OAuth extends Controller
         if($user->wasRecentlyCreated) return redirect('app');
 
         // -> 再認証をappへ
-        $user->refresh_token = $channel->refreshToken;
+        $user->youtube_refresh_token = $channel->refreshToken;
         $user->save(); // -> refresh_tokenを更新
         return redirect('app');
     }
