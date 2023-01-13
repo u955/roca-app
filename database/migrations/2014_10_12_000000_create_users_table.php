@@ -18,17 +18,16 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->string('roca-id');
-            $table->dateTime('updated-at');
+            $table->string('user_key');
 
-            $table->string('youtube-id');
-            $table->string('youtube-nickname');
-            $table->string('youtube-name')->nullable();
-            $table->string('youtube-email')->nullable();
-            $table->string('youtube-avatar');
+            $table->string('youtube_id');
+            $table->string('youtube_nickname');
+            $table->string('youtube_name')->nullable();
+            $table->string('youtube_email')->nullable();
+            $table->string('youtube_avatar');
 
-            $table->string('youtube-refresh-token');
-            $table->string('youtube-access-token');
+            $table->string('youtube_refresh_token');
+            $table->string('youtube_access_token');
         });
     }
 
