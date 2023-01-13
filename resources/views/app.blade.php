@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('js/appprocess.js') }}"></script>
-
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    @vite([
+        'resources/js/appprocess.js',
+        'resources/sass/app.scss'
+    ])
 
     <title>ROCA - App</title>
 </head>

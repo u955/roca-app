@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    @vite([
+        'resources/sass/index.scss'
+    ])
 
     <title>ROCA</title>
 </head>

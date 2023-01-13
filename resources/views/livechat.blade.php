@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('js/livechat.js') }}"></script>
-
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/livechat.css">
+
+    @vite([
+        'resources/js/livechat.js',
+        'resources/sass/livechat.scss'
+    ])
 
     <title>ROCA - LiveChat</title>
 </head>
