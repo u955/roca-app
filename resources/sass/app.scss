@@ -1,0 +1,136 @@
+
+// @define
+$header-height: 50px;
+$title-height:  80px;
+$main-height:   500px;
+$main-child-height: 499px;
+
+$livechat-width:     400px;
+$blockedwords-width: 400px;
+$settings-width:     300px;
+
+$main-margin-right: 20px;
+$main-width: calc($livechat-width + $blockedwords-width + $settings-width + ($main-margin-right * 2));
+
+
+// ----- init ----- //
+p  { margin: 0; }
+hr { margin: 0; }
+a, a:visited { color: #0071d1; }
+
+h1, h2, h3 ,h4, h5, h6 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    color: #393939;
+}
+
+.border {
+    border: 1px solid lightgray;
+    outline: none;
+}
+
+.root {
+    max-width: $main-width;
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+// ----- header ----- //
+$logosize: 25px; // @define
+$avatarsize: 30px; // @define
+
+.header {
+    // -- display
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    // -- decoration
+    height: $header-height;
+    font-size: small;
+    p { margin: 0 5px; }
+
+    .logo {
+        margin-right: auto;
+        height: $logosize;
+    }
+
+    .avatar {
+        border-radius: 50%;
+        height: $avatarsize;
+    }
+}
+
+
+// ----- main ----- //
+$lcwidth-with-margin: calc($livechat-width + $main-margin-right); // @define
+$bwwidth-with-margin: calc($blockedwords-width + $main-margin-right); // @define
+
+.main {
+    // -- display
+    display: grid;
+    grid-template-columns: $lcwidth-with-margin $bwwidth-with-margin $settings-width;
+
+    .livechat     { grid-column: 1; grid-row: 1; }
+    .blockedwords { grid-column: 2; grid-row: 1; }
+    .settings     { grid-column: 3; grid-row: 1; }
+
+    // -- decoration
+    height: $main-height;
+    width:  $main-width;
+}
+
+
+// ----- livechat ----- //
+.livechat {
+    height: $main-child-height;
+    width:  $livechat-width;
+    margin-right: $main-margin-right;
+}
+
+
+// ----- blockedwords ----- //
+$upload-button-height: 23px; // @define
+
+.blockedwords {
+    height: $main-child-height;
+    width:  $blockedwords-width;
+    margin-right: $main-margin-right;
+
+    #upload { height: $upload-button-height; }
+
+    #blockedwords {
+        position: relative;
+        right:    1px;
+        height: calc($main-child-height - $upload-button-height - 5px);
+        width:  calc($blockedwords-width - 4px);
+
+        resize: none;
+        outline: none;
+    }
+}
+
+
+// ----- settings ----- //
+.settings {
+    height: $main-child-height;
+    width:  $settings-width;
+
+    hr { margin: 10px 0; }
+    .float { float: left; }
+    #userkey { float: right; }
+
+    input {
+        margin: 5px 0;
+        &.url { width: calc($settings-width - 8px); }
+        &.key { width: calc(150px - 8px); margin: 0 3px;}
+    }
+
+    .caution {
+        margin-bottom: 10px;
+        font-size: smaller;
+        color: #777777;
+    }
+
+}
