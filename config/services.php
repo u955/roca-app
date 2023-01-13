@@ -34,7 +34,8 @@ return [
     'youtube' => [
         'client_id' => env('YOUTUBE_CLIENT_ID'),
         'client_secret' => env('YOUTUBE_CLIENT_SECRET'),
-        'redirect' => env('YOUTUBE_REDIRECT_URI')
+        'redirect' => env('YOUTUBE_REDIRECT_URI'),
+        'api_key' => env('YOUTUBE_API_KEY'),
       ],
 
 ];
