@@ -10,7 +10,7 @@ export default defineConfig({
 
                 'resources/js/app.js',
                 'resources/js/_app.js',
-                'resources/js/_livechat.js'
+                'resources/js/_livechat.js',
             ],
             refresh: true,
         }),
