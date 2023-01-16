@@ -1,7 +1,7 @@
 
 // MODULES
-var cookieModule = require('./cookie');
-var cleanerModule = require('./cleaner');
+import * as cookieModule from './cookie';
+import * as cleanerModule from './cleaner';
 
 
 // MEMBERS
@@ -36,7 +36,7 @@ function getLiveChatID() {
 
 
 // livechatの取得(LiveChat.php)
-streaming = function() {
+var streaming = function() {
     const pageToken = cookieModule.get('pageToken'); // -> cookieを参照
 
     $.ajax({

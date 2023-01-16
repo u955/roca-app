@@ -1,6 +1,6 @@
 
 // MODULES
-var cookieModule = require('./cookie');
+import * as cookieModule from './cookie';
 
 
 // MEMBERS

@@ -14,11 +14,10 @@ var convert = function(userkey, element) {
     }}
     return chatmessage;
 }
-exports.convert = convert;
 
 
 // livechatmessageの削除(LiveChat.php)
-function deleteLiveChatMessage(userkey, id) {
+export function deleteLiveChatMessage(userkey, id) {
     $.ajax({ // -> livechat messageを削除
         url: `/api/deletelivechatmessage?userkey=${userkey}&id=${id}`,
         dataType: 'json'
