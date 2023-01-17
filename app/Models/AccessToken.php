@@ -43,7 +43,7 @@ class AccessToken extends Model
             ];
 
             // -> API呼び出し
-            $result = Model::APICilent($url, 'POST', $option);
+            $result = APICilent::APIgetJSON($url, 'POST', $option);
             $access_token = $result['access_token'];
 
             // -> DBを更新してreturnする
@@ -54,7 +54,6 @@ class AccessToken extends Model
             return $access_token;
         }
     }
-
 
     // user_keyが存在するか確認する
     public static function userKeyDoesntExist($userkey) {
