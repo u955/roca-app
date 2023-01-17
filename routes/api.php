@@ -19,6 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('streaming', [LiveChat::class, 'streaming']);
-Route::get('getlivechatid', [LiveChat::class, 'getLiveChatID']);
-Route::get('deletelivechatmessage', [LiveChat::class, 'deleteLiveChatMessage']);
+Route::get('getlivebroadcast', [LiveChat::class, 'getLiveBroadcast']);
+Route::get('monitoring', [LiveChat::class, 'monitoring']);
