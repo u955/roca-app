@@ -15,5 +15,6 @@
 </head>
 
 <body>
+    <div id="livechat"></div>
 </body>
 </html>
