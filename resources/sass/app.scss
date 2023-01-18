@@ -2,15 +2,14 @@
 // @define
 $header-height: 50px;
 $title-height:  80px;
-$main-height:   500px;
-$main-child-height: 499px;
+$main-height:   480px;
+$main-child-height: 479px;
 
-$livechat-width:     400px;
-$blockedwords-width: 400px;
-$settings-width:     300px;
+$widget-width:   400px;
+$settings-width: 300px;
 
 $main-margin-right: 20px;
-$main-width: calc($livechat-width + $blockedwords-width + $settings-width + ($main-margin-right * 2));
+$main-width: calc(($widget-width * 2) + $settings-width + ($main-margin-right * 2));
 
 
 // ----- init ----- //
@@ -64,17 +63,16 @@ $avatarsize: 30px; // @define
 
 
 // ----- main ----- //
-$lcwidth-with-margin: calc($livechat-width + $main-margin-right); // @define
-$bwwidth-with-margin: calc($blockedwords-width + $main-margin-right); // @define
+$widget-width-with-margin: calc($widget-width + $main-margin-right); // @define
 
 .main {
     // -- display
     display: grid;
-    grid-template-columns: $lcwidth-with-margin $bwwidth-with-margin $settings-width;
+    grid-template-columns: $widget-width-with-margin $widget-width-with-margin $settings-width;
 
-    .livechat     { grid-column: 1; grid-row: 1; }
-    .blockedwords { grid-column: 2; grid-row: 1; }
-    .settings     { grid-column: 3; grid-row: 1; }
+    .livechat { grid-column: 1; grid-row: 1; }
+    .eval     { grid-column: 2; grid-row: 1; }
+    .settings { grid-column: 3; grid-row: 1; }
 
     // -- decoration
     height: $main-height;
@@ -82,33 +80,11 @@ $bwwidth-with-margin: calc($blockedwords-width + $main-margin-right); // @define
 }
 
 
-// ----- livechat ----- //
-.livechat {
+// ----- widget ----- //
+.widget {
     height: $main-child-height;
-    width:  $livechat-width;
+    width:  $widget-width;
     margin-right: $main-margin-right;
-}
-
-
-// ----- blockedwords ----- //
-$upload-button-height: 23px; // @define
-
-.blockedwords {
-    height: $main-child-height;
-    width:  $blockedwords-width;
-    margin-right: $main-margin-right;
-
-    #upload { height: $upload-button-height; }
-
-    #blockedwords {
-        position: relative;
-        right:    1px;
-        height: calc($main-child-height - $upload-button-height - 5px);
-        width:  calc($blockedwords-width - 4px);
-
-        resize: none;
-        outline: none;
-    }
 }
 
 

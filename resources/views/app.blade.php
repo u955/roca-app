@@ -29,9 +29,14 @@
     <h2 class="title">コンソール</h2>
 
     <div class="main">
-        <iframe class="livechat border"
+        <iframe class="livechat widget border"
             src={{ route("livechat", "user_key=$user_key") }}>
         </iframe>
+
+        <iframe class="eval widget border"
+            src={{ route("eval", "user_key=$user_key") }}>
+        </iframe>
+
 
         <div class="settings">
             <p>このURLをOBSのブラウザソースに設定してください</p>
