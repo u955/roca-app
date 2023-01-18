@@ -7,13 +7,15 @@
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
 
     @vite([
-        'resources/js/_livechat.js',
+        'resources/js/_eval.js',
+        'resources/sass/eval.scss',
         'resources/sass/widget.scss'
     ])
 
-    <title>ROCA - LiveChat</title>
+    <title>ROCA - Eval</title>
 </head>
 
 <body>
+    <div id="log"></div>
 </body>
 </html>
