@@ -32,7 +32,7 @@ class AccessToken extends Model
             $client_secret = config('services.youtube.client_secret');
             $refresh_token = DB::table('users')->where('user_key', $user_key)->value('youtube_refresh_token');
 
-            $url = "https://accounts.google.com/o/oauth2/token?&&&";
+            $url = "https://accounts.google.com/o/oauth2/token";
             $option = [
                 'form_params' => [
                     'client_id' => $client_id,
