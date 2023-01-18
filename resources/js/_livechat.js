@@ -21,7 +21,7 @@ function getLiveBroadcast() {
     .then(
         data => {
             // -> livechat表示
-            location.href = `https://www.youtube.com/live_chat?v=${data.videoid}&embed_domain=127.0.0.1`;
+            location.href = `https://www.youtube.com/live_chat?v=${data.videoid}&embed_domain=${location.hostname}`;
         },
         error => {
             setFaildMessage();
