@@ -86,15 +86,15 @@ class LiveChat extends Controller
 
             // neutralとの差で判定する
             $calc = [
-                'neutral'     => $neutral - $neutral,
-                'slander'     => $neutral - $result['score']['slander'],
-                'sarcasm'     => $neutral - $result['score']['sarcasm'],
-                'sexual'      => $neutral - $result['score']['sexual'],
-                'spam'        => $neutral - $result['score']['spam'],
-                'divulgation' => $neutral - $result['score']['divulgation']
+                'neutral'     => $neutral + $neutral,
+                'slander'     => $neutral + $result['score']['slander'],
+                'sarcasm'     => $neutral + $result['score']['sarcasm'],
+                'sexual'      => $neutral + $result['score']['sexual'],
+                'spam'        => $neutral + $result['score']['spam'],
+                'divulgation' => $neutral + $result['score']['divulgation']
             ];
             // 差の値が最小の項目が判定値となる
-            $judgement = array_search(min($calc), $result);
+            $judgement = array_search(max($calc), $calc);
             $result += Array('judgement' => $judgement);
             array_push($evaluated, $data['items'][$i] + $result);
         }

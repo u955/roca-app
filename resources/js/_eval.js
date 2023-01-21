@@ -64,13 +64,14 @@ function setLiveChatMessage(data) {
         const profileImageUrl = element.authorDetails.profileImageUrl;
         const isChatSponsor = (element.authorDetails.isChatSponsor == 1)? 'moderator' : '';
         const displayName = element.authorDetails.displayName;
-        const displayMessage = element.authorDetails.displayMessage;
+        const displayMessage = element.snippet.displayMessage;
+        const judgement = element.judgement;
 
         var html =`
         <img class='avatar' src='${profileImageUrl}'>
 
         <p class='displaymessage'>
-            <span class='displayname ${isChatSponsor}'>${displayName}</span>
+            <span class='displayname ${isChatSponsor}'>${displayName}: ${judgement}</span>
             ${displayMessage}
         </p>
         `;
