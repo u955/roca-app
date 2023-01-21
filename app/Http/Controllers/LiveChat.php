@@ -63,8 +63,6 @@ class LiveChat extends Controller
         $livechat = $this->streaming($livechatid, $pageToken);
         $livechat['items'] = $this->evalLiveChatMessages($livechat);
         return response()->json($livechat);
-
-        // ------------------------log出力
     }
 
 
@@ -101,6 +99,7 @@ class LiveChat extends Controller
         return $evaluated;
 
         // ------------------------削除・対処処理
+        // ------------------------ログに書き込み
     }
 
 
