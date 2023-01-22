@@ -57,11 +57,13 @@ class LiveChat extends Controller
         // -> user_keyが存在しなければ処理しない
         if(AccessToken::userKeyDoesntExist($request->user_key)) return;
 
+        $user_key = $request->user_key;
         $livechatid = $request->livechatid; // -> URLクエリからliveChatIdを取得
         $pageToken = $request->pageToken; // -> URLクエリからpageTokenを取得
 
+        // liveChatの取得と判定
         $livechat = $this->streaming($livechatid, $pageToken);
-        $livechat['items'] = $this->evalLiveChatMessages($livechat);
+        $livechat['items'] = $this->evalLiveChatMessages($livechat, $user_key);
         return response()->json($livechat);
     }
 
@@ -69,7 +71,7 @@ class LiveChat extends Controller
     // ----- Model: Evaluation ----- //
 
     // livechatの評価
-    private function evalLiveChatMessages($data, $results=[])
+    private function evalLiveChatMessages($data, $user_key, $results=[])
     {
         // dataからdisplayMessageのみを取り出し
         $texts = array_map(fn($item): string =>
@@ -95,11 +97,16 @@ class LiveChat extends Controller
             $judgement = array_search(max($calc), $calc);
             $evaluated += Array('judgement' => $judgement);
 
+            // 分析結果をresultsに格納
             array_push($results, $data['items'][$i] + Array('roca' => $evaluated));
+
+            // 判定がneutral以外の時、対処処理
+            if($judgement != 'neutral') {
+                $id = $data[$data['items'][$i]['id']];
+                $this->deleteLiveChatMessage($id, $user_key);
+            }
         }
         return $results;
-
-        // ------------------------削除・対処処理
         // ------------------------ログに書き込み
     }
 
