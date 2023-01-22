@@ -69,34 +69,35 @@ class LiveChat extends Controller
     // ----- Model: Evaluation ----- //
 
     // livechatの評価
-    private function evalLiveChatMessages($data, $evaluated=[])
+    private function evalLiveChatMessages($data, $results=[])
     {
         // dataからdisplayMessageのみを取り出し
         $texts = array_map(fn($item): string =>
             $item['snippet']['displayMessage'], $data['items']);
 
         // textsをAIに評価させる
-        $results = $this->evalTexts($texts);
+        $evaluatedData = $this->evalTexts($texts);
 
         // 評価を基に判定
-        foreach($results['body'] as $i => $result) {
-            $neutral = $result['score']['neutral'];
+        foreach($evaluatedData['body'] as $i => $evaluated) {
+            $neutral = $evaluated['score']['neutral'];
 
             // neutralとの差で判定する
             $calc = [
                 'neutral'     => $neutral + $neutral,
-                'slander'     => $neutral + $result['score']['slander'],
-                'sarcasm'     => $neutral + $result['score']['sarcasm'],
-                'sexual'      => $neutral + $result['score']['sexual'],
-                'spam'        => $neutral + $result['score']['spam'],
-                'divulgation' => $neutral + $result['score']['divulgation']
+                'slander'     => $neutral + $evaluated['score']['slander'],
+                'sarcasm'     => $neutral + $evaluated['score']['sarcasm'],
+                'sexual'      => $neutral + $evaluated['score']['sexual'],
+                'spam'        => $neutral + $evaluated['score']['spam'],
+                'divulgation' => $neutral + $evaluated['score']['divulgation']
             ];
             // 差の値が最小の項目が判定値となる
             $judgement = array_search(max($calc), $calc);
-            $result += Array('judgement' => $judgement);
-            array_push($evaluated, $data['items'][$i] + $result);
+            $evaluated += Array('judgement' => $judgement);
+
+            array_push($results, $data['items'][$i] + Array('roca' => $evaluated));
         }
-        return $evaluated;
+        return $results;
 
         // ------------------------削除・対処処理
         // ------------------------ログに書き込み

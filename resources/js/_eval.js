@@ -65,7 +65,7 @@ function setLiveChatMessage(data) {
         const isChatSponsor = (element.authorDetails.isChatSponsor == 1)? 'moderator' : '';
         const displayName = element.authorDetails.displayName;
         const displayMessage = element.snippet.displayMessage;
-        const judgement = element.judgement;
+        const judgement = element.roca.judgement;
 
         var html =`
         <img class='avatar' src='${profileImageUrl}'>
