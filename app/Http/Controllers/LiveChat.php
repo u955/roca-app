@@ -34,7 +34,7 @@ class LiveChat extends Controller
     public function getLiveBroadcast(Request $request)
     {
         // -> user_keyが存在しなければ処理しない
-        if(AccessToken::userKeyDoesntExist($request->user_key)) return;
+        if(AccessToken::userKeyDoesntExist($request->userkey)) return;
 
         $access_token = AccessToken::get($request->userkey); // -> user_keyからaccess_tokenを取得
         $url = "https://youtube.googleapis.com/youtube/v3/liveBroadcasts?part=snippet&broadcastStatus=active&maxResults=1&access_token={$access_token}&key={$this->key}";
@@ -55,9 +55,9 @@ class LiveChat extends Controller
     public function monitoring(Request $request)
     {
         // -> user_keyが存在しなければ処理しない
-        if(AccessToken::userKeyDoesntExist($request->user_key)) return;
+        if(AccessToken::userKeyDoesntExist($request->userkey)) return;
 
-        $user_key = $request->user_key;
+        $user_key = $request->userkey;
         $livechatid = $request->livechatid; // -> URLクエリからliveChatIdを取得
         $pageToken = $request->pageToken; // -> URLクエリからpageTokenを取得
 
@@ -102,7 +102,7 @@ class LiveChat extends Controller
 
             // 判定がneutral以外の時、対処処理
             if($judgement != 'neutral') {
-                $id = $data[$data['items'][$i]['id']];
+                $id = $data['items'][$i]['id'];
                 $this->deleteLiveChatMessage($id, $user_key);
             }
         }
