@@ -83,6 +83,7 @@ class LiveChat extends Controller
         // 評価を基に判定
         foreach($evaluatedData['body'] as $i => $evaluated) {
             $neutral = $evaluated['score']['neutral'];
+            $id = $data['items'][$i]['id'];
 
             // neutralとの差で判定する
             $calc = [
@@ -101,13 +102,9 @@ class LiveChat extends Controller
             array_push($results, $data['items'][$i] + Array('roca' => $evaluated));
 
             // 判定がneutral以外の時、対処処理
-            if($judgement != 'neutral') {
-                $id = $data['items'][$i]['id'];
-                $this->deleteLiveChatMessage($id, $user_key);
-            }
+            if($judgement != 'neutral') $this->deleteLiveChatMessage($id, $user_key);
         }
         return $results;
-        // ------------------------ログに書き込み
     }
 
 
