@@ -58,6 +58,6 @@ class AccessToken extends Model
 
     // user_keyが存在するか確認する
     public static function userKeyDoesntExist($userkey) {
-        return (DB::table('users')->where('user_key', $userkey)->doesntExist())? true : false;
+        return (DB::table('users')->where('user_key', $userkey)->doesntExist());
     }
 }
