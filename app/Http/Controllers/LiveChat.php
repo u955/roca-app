@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AccessToken;
 use App\Models\APICilent;
+use App\Models\LiveChatMessageLog;
 use Illuminate\Http\Request;
 
 class LiveChat extends Controller
@@ -99,10 +100,15 @@ class LiveChat extends Controller
             $evaluated += Array('judgement' => $judgement);
 
             // 分析結果をresultsに格納
-            array_push($results, $data['items'][$i] + Array('roca' => $evaluated));
+            $result = $data['items'][$i] + Array('roca' => $evaluated);
+            array_push($results, $result);
 
             // 判定がneutral以外の時、対処処理
             if($judgement != 'neutral') $this->deleteLiveChatMessage($id, $user_key);
+
+            //ログに記録
+            $model = new LiveChatMessageLog();
+            $model->update($result);
         }
         return $results;
     }
