@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('live_chat_message_log', function (Blueprint $table) {
             $table->string('id')->primary();
+            $table->string('livechat_id');
             $table->timestamp('published_at');
+
+            $table->string('channel_id');
+            $table->string('channel_url');
+            $table->string('display_name');
+            $table->string('profile_image');
 
             $table->string('message');
             $table->string('judgement');
