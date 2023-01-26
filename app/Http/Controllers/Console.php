@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
-class App extends Controller
+class Console extends Controller
 {
     // ACCESS FROM URL
     public function index()
@@ -28,7 +28,7 @@ class App extends Controller
         $email     = Auth::user()->youtube_email;
         $avatar    = Auth::user()->youtube_avatar;
 
-        return view('app', compact('user_key', 'nickname', 'name', 'email', 'avatar')); // -> user_keyをlivechatのbladeへ渡す
+        return view('console', compact('user_key', 'nickname', 'name', 'email', 'avatar')); // -> user_keyをlivechatのbladeへ渡す
     }
 
 
@@ -57,6 +57,6 @@ class App extends Controller
         ]);
 
         Cookie::queue(Cookie::forget('user_key'));
-        return redirect()->route('app'); // -> appへ
+        return redirect()->route('console'); // -> consoleへ
     }
 }

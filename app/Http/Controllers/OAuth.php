@@ -11,8 +11,8 @@ class OAuth extends Controller
 {
     public function redirect()
     {
-        // -> 認証済をappへ
-        if(Auth::check()) return redirect('app');
+        // -> 認証済をconsoleへ
+        if(Auth::check()) return redirect('console');
 
         $scopes = [
             "https://www.googleapis.com/auth/youtube.force-ssl",
@@ -55,12 +55,12 @@ class OAuth extends Controller
         ]);
         Auth::login($user, true);
 
-        // -> 新規認証をappへ
-        if($user->wasRecentlyCreated) return redirect('app');
+        // -> 新規認証をconsoleへ
+        if($user->wasRecentlyCreated) return redirect('console');
 
-        // -> 再認証をappへ
+        // -> 再認証をconsoleへ
         $user->youtube_refresh_token = $channel->refreshToken;
         $user->save(); // -> refresh_tokenを更新
-        return redirect('app');
+        return redirect('console');
     }
 }

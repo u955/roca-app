@@ -8,11 +8,11 @@
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
 
     @vite([
-        'resources/js/_app.js',
-        'resources/sass/app.scss'
+        'resources/js/_console.js',
+        'resources/sass/console.scss'
     ])
 
-    <title>ROCA - App</title>
+    <title>ROCA - console</title>
 </head>
 
 <body class="root">

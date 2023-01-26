@@ -21,10 +21,10 @@ Route::redirect('/', 'https://zigzag-shovel-e41.notion.site/ROCA-AI-db53de64197f
 Route::get('livechat', [LiveChat::class ,'index'])->name('livechat');
 Route::get('eval', [LiveChat::class ,'index'])->name('eval');
 
-// App
-Route::get('app',     [App::class, 'index'])->name('app');
-Route::get('signout', [App::class, 'signout'])->name('signout');
-Route::get('reissue', [App::class, 'reissueUserkey'])->name('reissue');
+// Console
+Route::get('console', [Console::class, 'index'])->name('console');
+Route::get('signout', [Console::class, 'signout'])->name('signout');
+Route::get('reissue', [Console::class, 'reissueUserkey'])->name('reissue');
 
 // Auth
 Route::get('auth/redirect', [OAuth::class, 'redirect'])->name('auth');
