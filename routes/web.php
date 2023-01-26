@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\App;
+use App\Http\Controllers\Console;
 use App\Http\Controllers\LiveChat;
 use App\Http\Controllers\OAuth;
 
