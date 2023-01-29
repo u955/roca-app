@@ -45,7 +45,7 @@ const monitoring = function() {
     })
     .then(
         data => {
-            setLiveChatMessage(data); // -> ログの表示
+            setLiveChatMessageLog(data); // -> ログの表示
             document.cookie = `pageToken=${data.nextPageToken}; max-age=30` // -> cookieを登録
             setTimeout(monitoring, 3000); // -> 同期間隔の設定
         },
@@ -59,7 +59,7 @@ const monitoring = function() {
 // ----- display ----- //
 
 // livechatMessageの反映
-function setLiveChatMessage(data) {
+function setLiveChatMessageLog(data) {
     data.items.forEach(element => {
         const profileImageUrl = element.authorDetails.profileImageUrl;
         const isChatSponsor = (element.authorDetails.isChatSponsor == 1)? 'moderator' : '';
