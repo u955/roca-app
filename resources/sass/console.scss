@@ -11,21 +11,31 @@ $settings-width: 300px;
 $main-margin-right: 20px;
 $main-width: calc(($widget-width * 2) + $settings-width + ($main-margin-right * 2));
 
+$default-font-color: #393939;
+
 
 // ----- init ----- //
 p  { margin: 0; }
 hr { margin: 0; }
+
 a, a:visited { color: #0071d1; }
+p { color: $default-font-color; }
 
 h1, h2, h3 ,h4, h5, h6 {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
-    color: #393939;
+    color: $default-font-color;
+}
+
+hr {
+    background-color: lightgray;
+    border: none;
+    height: 1px;
 }
 
 .border {
     border: 1px solid lightgray;
-    outline: none;
+    border-radius: 8px;
 }
 
 .root {
@@ -89,24 +99,40 @@ $widget-width-with-margin: calc($widget-width + $main-margin-right); // @define
 
 
 // ----- settings ----- //
+$settings-padding: 15px; // @define
+
 .settings {
-    height: $main-child-height;
-    width:  $settings-width;
-
-    hr { margin: 10px 0; }
-    .float { float: left; }
-    #userkey { float: right; }
-
-    input {
-        margin: 5px 0;
-        &.url { width: calc($settings-width - 8px); }
-        &.key { width: calc(150px - 8px); margin: 0 3px;}
+    // -- display
+    .flex {
+        display: flex;
+        align-items: center;
     }
 
-    .caution {
+    // -- decoration
+    padding: $settings-padding;
+    height: calc($main-child-height - $settings-padding*2 + 2px);
+    width:  calc($settings-width - $settings-padding*2);
+
+    background-color: #faf9f6;
+    border-radius: 10px;
+
+    hr { margin: 10px 0; }
+    input[type='button'] { margin-bottom: 10px; }
+
+    p {
         margin-bottom: 10px;
         font-size: smaller;
         color: #777777;
     }
-
+    .title, button {
+        font-weight: bold;
+        font-size: smaller;
+        color: #6c6b6b;
+    }
+    .icon {
+        margin-right: 7px;
+        padding: 0;
+        font-size: medium;
+        color: #6c6b6b;
+    }
 }
