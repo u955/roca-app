@@ -17,7 +17,7 @@
 
 <body class="root">
     <header class="header">
-        <img class="logo" src="/storage/logo.png">
+        <img class="logo" src="https://roca-s3.s3.amazonaws.com/app/rokalogo2.png">
 
         <img class="avatar" src="{{ $avatar }}">
         <p>{{ $nickname }}としてサインインしています</p>
