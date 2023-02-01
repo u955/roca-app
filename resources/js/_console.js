@@ -13,6 +13,7 @@ $(function() {
     user_key = cookieModule.get('user_key'); // -> userkeyの取得
 });
 
+
 window.copy = function(id) {
     var text = document.getElementById(id).innerText;
     navigator.clipboard.writeText(text)
